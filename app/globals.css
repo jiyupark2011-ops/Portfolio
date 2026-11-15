@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #fffbf2;
+  --surface: #ffffff;
+  --ink: #1b2440;
+  --ink-soft: #5b6478;
+  --line: #ece6d9;
+  --primary: #2f5bea;
+  --sun: #ffc93c;
+  --coral: #ff6f59;
+  --mint: #2bb6a3;
+  --sky: #e8f0ff;
+
+  /* Darker variants used only where the accent is used as TEXT, to keep WCAG AA (4.5:1) */
+  --coral-ink: #c2412d;
+  --mint-ink: #0f7a6c;
+  --primary-ink: #2549c4;
+  --sun-ink: #7a5200;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-primary: var(--primary);
+  --color-sun: var(--sun);
+  --color-coral: var(--coral);
+  --color-mint: var(--mint);
+  --color-sky: var(--sky);
+  --color-coral-ink: var(--coral-ink);
+  --color-mint-ink: var(--mint-ink);
+  --color-primary-ink: var(--primary-ink);
+  --color-sun-ink: var(--sun-ink);
+
+  --font-sans:
+    "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Yellow highlighter underline */
+.highlight {
+  background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--sun) 75%, transparent) 60%);
+  background-repeat: no-repeat;
+  padding-inline: 0.1em;
+}
+
+/* Horizontal scroll strip without visible scrollbar */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scroll fade-up animation (enabled by components/public/Reveal.tsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
